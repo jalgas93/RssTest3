@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
@@ -38,12 +39,13 @@ class FrontFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = FrontAdapter()
         _binding?.recyclerView?.adapter = adapter
-        startFunction()
         viewModel.a()
+        startFunction()
+
 
         adapter.setItemClick {
-
             findNavController().navigate(R.id.action_frontFragment_to_backFragment)
+            Toast.makeText(requireContext(),"1",Toast.LENGTH_LONG).show()
         }
 
 
