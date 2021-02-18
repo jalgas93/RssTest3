@@ -1,33 +1,48 @@
 package com.example.rsstest3.presentations.frontFragment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rsstest3.databinding.FragmentFrontBinding
-import com.example.rsstest3.model.FrontModel
+import com.bumptech.glide.Glide
+import com.example.rsstest3.databinding.ItemFrontFragmentBinding
+import com.prof.rssparser.Article
+import com.prof.rssparser.Channel
 
 
 class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
 
-    var model: List<FrontModel> = listOf()
+    var model: List<Channel> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
+            Log.i("model",model.toString())
         }
 
-    inner class FrontViewHolder(binding: FragmentFrontBinding) :
+
+
+    inner class FrontViewHolder(val binding: ItemFrontFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(model: FrontModel) {
+        var title = binding.tvTitleItemFront
+
+        var descriptions = binding.tvDescriptionItemFront
+
+        fun bind(model: Channel) {
+            Log.i("jalgas1",binding.tvTitleItemFront.toString())
+
+         title.text = model.title
+            descriptions.text = model.link
+
+            Glide.with(itemView.context).load(model.image).into(binding.ivItemFront)
 
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FrontViewHolder {
-        var binding =
-            FragmentFrontBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var binding = ItemFrontFragmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FrontViewHolder(binding)
     }
 
@@ -36,4 +51,5 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
     }
 
     override fun getItemCount(): Int = model.size
+
 }
