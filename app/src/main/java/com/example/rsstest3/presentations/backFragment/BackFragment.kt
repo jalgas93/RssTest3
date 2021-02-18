@@ -1,6 +1,7 @@
 package com.example.rsstest3.presentations.backFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,8 @@ class BackFragment : Fragment() {
 
         mBinding.webView.apply {
             webViewClient = WebViewClient()
-            loadUrl("")
+            Log.i("args",args.url.toString())
+            args.url?.let { loadUrl(it) }
         }
 
 

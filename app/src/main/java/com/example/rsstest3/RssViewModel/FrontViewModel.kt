@@ -33,7 +33,10 @@ class FrontViewModel(
 
 
     //url of RSS feed
-     private val url = "https://www.androidauthority.com/feed"
+
+
+  //   private val url = "https://www.androidauthority.com/feed"
+    private val url = "https://gravitec.net/blog/feed/"
     fun a() {
         viewModelScope.launch {
             try {

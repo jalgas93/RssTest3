@@ -10,25 +10,22 @@
         android:name="com.example.rsstest3.presentations.frontFragment.FrontFragment"
         android:label="fragment_front"
         tools:layout="@layout/fragment_front" >
+        <argument
+            android:name="webUrl"
+            app:argType="string" />
         <action
             android:id="@+id/action_frontFragment_to_backFragment"
             app:destination="@id/backFragment" />
-        <argument
-            android:name="JalgasWeb"
-            app:argType="string"
-            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/backFragment"
         android:name="com.example.rsstest3.presentations.backFragment.BackFragment"
         android:label="fragment_back"
         tools:layout="@layout/fragment_back" >
-        <action
-            android:id="@+id/action_backFragment_to_frontFragment"
-            app:destination="@id/frontFragment" />
         <argument
-            android:name="backFragment"
-            app:argType="com.example.rsstest3.model.Article"
-            app:nullable="true" />
+            android:name="url"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

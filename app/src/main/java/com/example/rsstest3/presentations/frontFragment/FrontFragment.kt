@@ -23,7 +23,7 @@ class FrontFragment : Fragment() {
     private val mBinding get() = _binding!!
     private val viewModel: FrontViewModel by viewModels()
     private lateinit var adapter: FrontAdapter
-    private val args:FrontFragmentArgs by navArgs()
+    private val args: FrontFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -44,16 +44,32 @@ class FrontFragment : Fragment() {
 
 
         adapter.setItemClick {
-            findNavController().navigate(R.id.action_frontFragment_to_backFragment)
-            Toast.makeText(requireContext(),"1",Toast.LENGTH_LONG).show()
+            var a = it.audio
+            var b = it.author
+            var s = it.categories
+            var d = it.content
+            var e = it.description
+            var f = it.guid
+            var j = it.image
+            var i = it.link
+            var g = it.pubDate
+            var h = it.sourceName
+            var u = it.sourceUrl
+            var o = it.title
+            var p = it.video
+
+
+           var action = FrontFragmentDirections.actionFrontFragmentToBackFragment(f)
+            Navigation.findNavController(view).navigate(action)
+           // Navigation.findNavController(view).navigate(R.id.action_frontFragment_to_backFragment)
+            Toast.makeText(requireContext(), "1", Toast.LENGTH_LONG).show()
         }
 
 
     }
 
     private fun startFunction() {
-
-        val adapter = FrontAdapter()
+//        val adapter = FrontAdapter()
         _binding?.recyclerView?.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
             adapter.model = it.articles
