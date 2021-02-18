@@ -5,9 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.navigation.fragment.navArgs
+
 import com.example.rsstest3.R
+import com.example.rsstest3.databinding.FragmentBackBinding
 
 class BackFragment : Fragment() {
+
+     var _binding: FragmentBackBinding? = null
+    private val mBinding get() = _binding!!
+    private val args: BackFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -15,8 +24,21 @@ class BackFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_back, container, false)
+        _binding = FragmentBackBinding.inflate(layoutInflater, container, false)
+        return mBinding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mBinding.webView.apply {
+            webViewClient = WebViewClient()
+            loadUrl("")
+        }
+
+
     }
 
 
+    }
 }

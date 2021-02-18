@@ -18,8 +18,8 @@ class FrontViewModel(
  //   var context: Context
 ) : AndroidViewModel(application) {
 
-    private val rssLiveData: MutableLiveData<List<Channel>> = MutableLiveData()
-    val liveData: LiveData<List<Channel>> = rssLiveData
+    private val rssLiveData: MutableLiveData<Channel> = MutableLiveData()
+    val liveData: LiveData<Channel> = rssLiveData
 
     private val _rssChannel = MutableLiveData<Channel>()
     val rssChannel: LiveData<Channel>
@@ -41,7 +41,7 @@ class FrontViewModel(
                 // Do something with your data
                 Log.i("jalgas", channel.toString())
               //  rssLiveData.postValue(channel)
-                rssLiveData.value = listOf(channel)
+                rssLiveData.value = channel
 
             } catch (e: Exception) {
                 e.printStackTrace()

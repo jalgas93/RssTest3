@@ -13,13 +13,18 @@ import com.prof.rssparser.Channel
 class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
 
-    var model: List<Channel> = listOf()
+    private lateinit var frontItemClick: (Article) -> Unit
+    fun setItemClick(itemClick: (article: Article) -> Unit) {
+        this.frontItemClick = itemClick
+    }
+
+
+    var model: MutableList<Article> = mutableListOf()
         set(value) {
             field = value
             notifyDataSetChanged()
-            Log.i("model",model.toString())
+            Log.i("model", model.toString())
         }
-
 
 
     inner class FrontViewHolder(val binding: ItemFrontFragmentBinding) :
@@ -29,20 +34,25 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
         var descriptions = binding.tvDescriptionItemFront
 
-        fun bind(model: Channel) {
-            Log.i("jalgas1",binding.tvTitleItemFront.toString())
+        fun bind(model: Article) {
+            Log.i("jalgas1", binding.tvTitleItemFront.toString())
 
-         title.text = model.title
+            title.text = model.title
             descriptions.text = model.link
 
             Glide.with(itemView.context).load(model.image).into(binding.ivItemFront)
+
+            itemView.setOnClickListener {
+                frontItemClick.invoke(model)
+            }
 
 
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FrontViewHolder {
-        var binding = ItemFrontFragmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var binding =
+            ItemFrontFragmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FrontViewHolder(binding)
     }
 

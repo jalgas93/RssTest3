@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.rsstest3.R
 import com.example.rsstest3.RssViewModel.FrontViewModel
 import com.example.rsstest3.databinding.FragmentFrontBinding
@@ -19,6 +22,7 @@ class FrontFragment : Fragment() {
     private val mBinding get() = _binding!!
     private val viewModel: FrontViewModel by viewModels()
     private lateinit var adapter: FrontAdapter
+    private val args:FrontFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -26,7 +30,7 @@ class FrontFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding =  FragmentFrontBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentFrontBinding.inflate(layoutInflater, container, false)
         return _binding?.root
     }
 
@@ -37,17 +41,22 @@ class FrontFragment : Fragment() {
         startFunction()
         viewModel.a()
 
+        adapter.setItemClick {
+
+            findNavController().navigate(R.id.action_frontFragment_to_backFragment)
+        }
+
+
     }
 
     private fun startFunction() {
 
         val adapter = FrontAdapter()
-       _binding?.recyclerView?.adapter = adapter
+        _binding?.recyclerView?.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
-           adapter.model = it
-            Log.i("Ruslan",it.toString())
+            adapter.model = it.articles
+            Log.i("Ruslan", it.toString())
         })
-
 
 
     }

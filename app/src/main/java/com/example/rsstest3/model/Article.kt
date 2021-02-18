@@ -1,5 +1,7 @@
 package com.example.rsstest3.model
 
+import java.io.Serializable
+
 class Article (
     var guid: String? = null,
     var title: String? = null,
@@ -14,4 +16,4 @@ class Article (
     var sourceName: String? = null,
     var sourceUrl: String? = null,
     private var _categories: MutableList<String> = mutableListOf()
-    )
+    ):Serializable

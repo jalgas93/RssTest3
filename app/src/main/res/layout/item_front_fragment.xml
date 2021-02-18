@@ -8,14 +8,14 @@
         android:id="@+id/iv_itemFront"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-                android:layout_width="80dp"
-        android:layout_height="80dp"/>
+                android:layout_width="100dp"
+        android:layout_height="100dp"/>
     <TextView
         android:id="@+id/tvTitle_itemFront"
         app:layout_constraintStart_toEndOf="@id/iv_itemFront"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:text="Jalgas"
         android:layout_height="wrap_content"/>
     <TextView
@@ -23,7 +23,7 @@
         app:layout_constraintStart_toEndOf="@id/iv_itemFront"
         app:layout_constraintTop_toBottomOf="@id/tvTitle_itemFront"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:text="Ruslan"
         android:layout_height="wrap_content"/>
 

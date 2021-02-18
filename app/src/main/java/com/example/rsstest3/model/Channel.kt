@@ -10,4 +10,4 @@ data class Channel(
     val lastBuildDate: String? = null,
     val updatePeriod: String? = null,
     val articles: MutableList<Article> = mutableListOf()
-):Serializable
+) : Serializable
