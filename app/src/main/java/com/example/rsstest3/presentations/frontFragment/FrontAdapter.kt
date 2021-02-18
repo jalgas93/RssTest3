@@ -47,7 +47,8 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
             }
             Glide.with(itemView.context).load(model.image).into(binding.ivItemFront)
             title.text = model.title
-            descriptions.text = model.link
+
+            descriptions.text = model.description
 
 
         }

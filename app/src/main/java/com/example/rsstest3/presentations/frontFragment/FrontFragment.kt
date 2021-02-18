@@ -44,22 +44,22 @@ class FrontFragment : Fragment() {
 
 
         adapter.setItemClick {
-            var a = it.audio
-            var b = it.author
-            var s = it.categories
-            var d = it.content
-            var e = it.description
-            var f = it.guid
-            var j = it.image
-            var i = it.link
-            var g = it.pubDate
-            var h = it.sourceName
-            var u = it.sourceUrl
-            var o = it.title
-            var p = it.video
+            var a = it.link
+//            var b = it.author
+//            var s = it.categories
+//            var d = it.content
+//            var e = it.description
+//            var f = it.guid
+//            var j = it.image
+//            var i = it.link
+//            var g = it.pubDate
+//            var h = it.sourceName
+//            var u = it.sourceUrl
+//            var o = it.title
+//            var p = it.video
 
 
-           var action = FrontFragmentDirections.actionFrontFragmentToBackFragment(f)
+           var action = FrontFragmentDirections.actionFrontFragmentToBackFragment(a)
             Navigation.findNavController(view).navigate(action)
            // Navigation.findNavController(view).navigate(R.id.action_frontFragment_to_backFragment)
             Toast.makeText(requireContext(), "1", Toast.LENGTH_LONG).show()
@@ -72,7 +72,8 @@ class FrontFragment : Fragment() {
 //        val adapter = FrontAdapter()
         _binding?.recyclerView?.adapter = adapter
         viewModel.liveData.observe(viewLifecycleOwner, Observer {
-            adapter.model = it.articles
+
+          adapter.model = it.articles
             Log.i("Ruslan", it.toString())
         })
 

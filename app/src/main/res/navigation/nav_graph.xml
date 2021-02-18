@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/frontFragment">
+    app:startDestination="@id/addChannelFragment">
 
     <fragment
         android:id="@+id/frontFragment"
@@ -24,6 +24,34 @@
         tools:layout="@layout/fragment_back" >
         <argument
             android:name="url"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/addChannelFragment"
+        android:name="com.example.rsstest3.presentations.firstFrontFragment.AddChannelFragment"
+        android:label="fragment_add_channel"
+        tools:layout="@layout/fragment_add_channel" >
+        <action
+            android:id="@+id/action_addChannelFragment_to_frontFragment"
+            app:destination="@id/frontFragment" />
+        <argument
+            android:name="addChannel"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRssFragment"
+        android:name="com.example.rsstest3.presentations.floatingActionbutton.AddRssFragment"
+        android:label="fragment_add_rss"
+        tools:layout="@layout/fragment_add_rss" >
+        <action
+            android:id="@+id/action_addRssFragment_to_addChannelFragment"
+            app:destination="@id/addChannelFragment" />
+        <argument
+            android:name="rss_add"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
