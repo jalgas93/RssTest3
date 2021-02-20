@@ -19,7 +19,6 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fl_btn_add_channel"
         android:layout_width="56dp"
-
         android:layout_height="56dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
