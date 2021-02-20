@@ -1,5 +1,6 @@
 package com.example.rsstest3.presentations.firstFrontFragment
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,8 @@ import com.example.rsstest3.databinding.ItemAddChannelBinding
 import com.example.rsstest3.model.Channel
 
 class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelViewHolder>() {
+
+
 
     var model: List<Channel> = listOf()
         set(value) {
@@ -28,9 +31,11 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
 
         fun bind(channel: Channel) {
             title.text = channel.link
+            Log.i("link",channel.link.toString())
             description.text = channel.description
 
-            Glide.with(itemView.context).load(channel.image).into(binding.ivAddChannel)
+
+           // Glide.with(itemView.context).load(channel.image).into(binding.ivAddChannel)
 
             itemView.setOnClickListener {
                 itemClickAddChannel.invoke(channel)

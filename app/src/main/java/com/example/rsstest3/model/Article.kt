@@ -1,7 +1,8 @@
 package com.example.rsstest3.model
 
+import androidx.room.Entity
 import java.io.Serializable
-
+@Entity(tableName = "entityArticle")
 class Article (
     var guid: String? = null,
     var title: String? = null,

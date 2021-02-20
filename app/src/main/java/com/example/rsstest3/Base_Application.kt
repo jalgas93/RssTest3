@@ -9,10 +9,9 @@ class Base_Application : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-//
-//        database = Room.databaseBuilder(this, AppRoomDatabase::class.java, "RssDatabase")
-//            .build()
 
+        database = Room.databaseBuilder(this, AppRoomDatabase::class.java, "RssDatabase")
+            .build()
     }
 
     companion object {

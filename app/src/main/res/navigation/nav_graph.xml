@@ -37,10 +37,13 @@
             android:id="@+id/action_addChannelFragment_to_frontFragment"
             app:destination="@id/frontFragment" />
         <argument
-            android:name="addChannel"
+            android:name="url"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_addChannelFragment_to_addRssFragment"
+            app:destination="@id/addRssFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRssFragment"
@@ -51,7 +54,7 @@
             android:id="@+id/action_addRssFragment_to_addChannelFragment"
             app:destination="@id/addChannelFragment" />
         <argument
-            android:name="rss_add"
+            android:name="url"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
