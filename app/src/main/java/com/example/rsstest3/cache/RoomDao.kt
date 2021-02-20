@@ -2,6 +2,7 @@ package com.example.rsstest3.cache
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.rsstest3.model.Article
 import com.example.rsstest3.model.Channel
 @Dao
 interface RoomDao {
@@ -14,5 +15,6 @@ interface RoomDao {
 
     @Delete
     suspend fun delete(channel:Channel)
+
 
 }
