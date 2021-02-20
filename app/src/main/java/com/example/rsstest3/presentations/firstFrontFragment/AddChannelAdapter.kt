@@ -19,6 +19,11 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
             notifyDataSetChanged()
         }
 
+    private lateinit var itemDelete:(Channel)->Unit
+    fun setDeleteItem(itemDelete:(channel:Channel)->Unit){
+        this.itemDelete = itemDelete
+    }
+
     private lateinit var itemClickAddChannel: (Channel) -> Unit
     fun setItemAddChannel(itemClickAddChannel: (channel: Channel) -> Unit) {
         this.itemClickAddChannel = itemClickAddChannel
@@ -39,6 +44,9 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
 
             itemView.setOnClickListener {
                 itemClickAddChannel.invoke(channel)
+            }
+            binding.btnAddChannel.setOnClickListener {
+                itemDelete.invoke(channel)
             }
 
         }

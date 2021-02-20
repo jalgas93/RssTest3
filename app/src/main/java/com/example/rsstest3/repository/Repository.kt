@@ -12,4 +12,7 @@ class Repository() {
 
     suspend fun getUrl() = Base_Application.getDatabase().getRoomDao().getUrl()
 
+    suspend fun deleteItem(channel:Channel) =
+        Base_Application.getDatabase().getRoomDao().delete(channel)
+
 }

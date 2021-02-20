@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -52,6 +53,30 @@ class AddChannelFragment : Fragment() {
             findNavController().navigate(R.id.action_addChannelFragment_to_addRssFragment)
         }
 
+        mAdapter.setDeleteItem {
+            var a = it.link
+            var b = it.articles
+            var s = it.description
+            var d = it.id
+            var e = it.image
+            var j = it.lastBuildDate
+            var q = it.title
+            var w = it.updatePeriod
+
+            val dialog: AlertDialog = AlertDialog.Builder(requireContext())
+                .setMessage("Вы уверены что хотите удалить ? ")
+                .setTitle("Удалить")
+                .setPositiveButton("yes") { _, _ ->
+                    mViewModel.deleteItem(
+                        Channel(d, q, a,s,e,j,w,b)
+                    )
+                    mViewModel.getUrl()
+                }
+                .setNegativeButton("no", null)
+                .create()
+            dialog.show()
+        }
+
           mAdapter.setItemAddChannel {
             var a = it.link
             Log.i("jalgas6",a.toString())
@@ -59,6 +84,8 @@ class AddChannelFragment : Fragment() {
             Navigation.findNavController(view).navigate(action)
         }
     }
+
+
 
     private fun init() {
         var repository = Repository()

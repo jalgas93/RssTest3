@@ -45,6 +45,12 @@ var  repository: Repository
 
         }
     }
+    fun deleteItem(channel:Channel){
+        viewModelScope.launch {
+            repository.deleteItem(channel)
+        }
+    }
+
     //url of RSS feed
     val parser = Parser.Builder()
         // .context()
