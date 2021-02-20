@@ -1,8 +1,6 @@
 package com.example.rsstest3.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -10,7 +8,7 @@ import java.io.Serializable
 data class Channel(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    val id:Int? = null,
+    val id: Int? = null,
     @ColumnInfo(name = "title")
     val title: String = "",
     @ColumnInfo(name = "link")
@@ -22,7 +20,7 @@ data class Channel(
     @ColumnInfo(name = "lastBuildDate")
     val lastBuildDate: String? = null,
     @ColumnInfo(name = "updatePeriod")
-    val updatePeriod: String?  = null,
+    val updatePeriod: String? = null,
     @ColumnInfo(name = "articles")
     val articles: String? = null
 ) : Serializable

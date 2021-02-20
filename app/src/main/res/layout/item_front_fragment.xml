@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvTitle_itemFront"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
-        android:text="Ruslan"
+
         android:layout_height="wrap_content"/>
 
 

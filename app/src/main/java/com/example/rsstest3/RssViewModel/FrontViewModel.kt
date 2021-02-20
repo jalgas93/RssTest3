@@ -8,6 +8,7 @@ import com.example.rsstest3.model.Channel
 import com.example.rsstest3.repository.Repository
 
 import com.example.rsstest3.util.BASE_URL
+import com.prof.rssparser.Article
 
 import com.prof.rssparser.Parser
 
@@ -20,8 +21,8 @@ class FrontViewModel(
 var  repository: Repository
 ) : ViewModel() {
 
-    private val rssLiveData: MutableLiveData<Channel> = MutableLiveData()
-    val liveData: LiveData<Channel> = rssLiveData
+    private val rssLiveData: MutableLiveData<MutableList<Article>> = MutableLiveData()
+    val liveData: LiveData<MutableList<Article>> = rssLiveData
 
     private val _rssChannelGetUrl = MutableLiveData<List<Channel>>()
     val rssChannelGetUrl: LiveData<List<Channel>>
@@ -39,7 +40,7 @@ var  repository: Repository
             repository.getUrl()
 
             _rssChannelGetUrl.value = repository.getUrl()
-            Log.i("jalgas1",repository.getUrl().toString())
+            Log.i("jalgas3",repository.getUrl().toString())
 
 
         }
@@ -59,9 +60,9 @@ var  repository: Repository
             try {
                 val channel =  parser.getChannel(url)
                 // Do something with your data
-                Log.i("jalgas", channel.toString())
-              //  rssLiveData.postValue(channel)
-                //rssLiveData.value = channel
+                Log.i("jalgas2", channel.toString())
+           rssLiveData.value = channel.articles
+
 
             } catch (e: Exception) {
                 e.printStackTrace()

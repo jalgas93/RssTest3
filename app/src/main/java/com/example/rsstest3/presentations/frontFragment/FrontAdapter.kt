@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.rsstest3.R
 import com.example.rsstest3.databinding.ItemFrontFragmentBinding
 import com.prof.rssparser.Article
 import com.prof.rssparser.Channel
+import com.prof.rssparser.Image
 
 
 class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
@@ -25,7 +27,7 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
 
     private lateinit var itemClick: (Article) -> Unit
-    fun setItemClick(itemClick: (article: Article) -> Unit) {
+    fun setItemClick(itemClick: (article:Article) -> Unit) {
         this.itemClick = itemClick
     }
     inner class FrontViewHolder(val binding: ItemFrontFragmentBinding) :
@@ -37,18 +39,17 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
         fun bind(model: Article) {
             Log.i("jalgas1", binding.tvTitleItemFront.toString())
-
-
-
-            itemView.setOnClickListener {
-                itemClick.invoke(model)
-                Log.i("click",it.toString())
-
-            }
-            Glide.with(itemView.context).load(model.image).into(binding.ivItemFront)
             title.text = model.title
 
-            descriptions.text = model.description
+
+
+            Glide.with(itemView.context).load("https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300").into(binding.ivItemFront)
+           itemView.setOnClickListener {
+               itemClick.invoke(model)
+           }
+
+
+
 
 
         }
@@ -62,6 +63,7 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
     override fun onBindViewHolder(holder: FrontViewHolder, position: Int) {
         holder.bind(model[position])
+
 
 
     }

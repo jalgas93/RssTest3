@@ -31,7 +31,7 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
 
         fun bind(channel: Channel) {
             title.text = channel.link
-            Log.i("link",channel.link.toString())
+            Log.i("jalgas5",channel.link.toString())
             description.text = channel.description
 
 

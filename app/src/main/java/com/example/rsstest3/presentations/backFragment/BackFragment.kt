@@ -34,7 +34,7 @@ class BackFragment : Fragment() {
 
         mBinding.webView.apply {
             webViewClient = WebViewClient()
-            Log.i("args",args.url.toString())
+            Log.i("jalgas4",args.url.toString())
             args.url?.let { loadUrl(it) }
         }
 

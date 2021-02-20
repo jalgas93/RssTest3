@@ -44,7 +44,7 @@ class AddChannelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
         initialiation()
-        Log.i("url", args.url.toString())
+        Log.i("jalgas7", args.url.toString())
 
         mAdapter = AddChannelAdapter()
         mBinding.recyclerViewAddChannel.adapter = mAdapter
@@ -54,7 +54,7 @@ class AddChannelFragment : Fragment() {
 
           mAdapter.setItemAddChannel {
             var a = it.link
-            Log.i("link",a.toString())
+            Log.i("jalgas6",a.toString())
             var action = AddChannelFragmentDirections.actionAddChannelFragmentToFrontFragment(a!!)
             Navigation.findNavController(view).navigate(action)
         }

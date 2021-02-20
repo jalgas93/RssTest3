@@ -52,10 +52,11 @@ class AddRssFragment : Fragment() {
         Log.i("text", text.toString())
         if (text.isNotEmpty()) {
 
-
-
-            var action = AddRssFragmentDirections.actionAddRssFragmentToAddChannelFragment(text)
-            findNavController().navigate(action)
+            findNavController().navigate(R.id.action_addRssFragment_to_addChannelFragment)
+//
+//
+//            var action = AddRssFragmentDirections.actionAddRssFragmentToAddChannelFragment(text)
+//            findNavController().navigate(action)
 
             mViewModel.insertUrl(
                 Channel(link = text)

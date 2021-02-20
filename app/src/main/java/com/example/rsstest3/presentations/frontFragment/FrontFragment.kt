@@ -24,7 +24,6 @@ class FrontFragment : Fragment() {
 
     private var _binding: FragmentFrontBinding? = null
     private val mBinding get() = _binding!!
-
     private lateinit var adapter: FrontAdapter
     private val args: FrontFragmentArgs by navArgs()
     private lateinit var mViewModel: FrontViewModel
@@ -48,6 +47,7 @@ class FrontFragment : Fragment() {
 
         _binding?.recyclerView?.adapter = adapter
         mViewModel.initialUrl(args.webUrl)
+        Log.i("jalgas9",args.webUrl)
         startFunction()
 
 
@@ -78,6 +78,7 @@ class FrontFragment : Fragment() {
 
     private fun init() {
         var repository = Repository()
+        mFactory = FrontViewModelFactory(repository)
         mViewModel = ViewModelProvider(this,mFactory).get(FrontViewModel::class.java)
     }
 
@@ -86,8 +87,8 @@ class FrontFragment : Fragment() {
         _binding?.recyclerView?.adapter = adapter
         mViewModel.liveData.observe(viewLifecycleOwner, Observer {
 
-        // adapter.model = it.articles
-            Log.i("Ruslan", it.toString())
+         adapter.model = it
+            Log.i("jalgas8", it.toString())
         })
 
 
