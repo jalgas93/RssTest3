@@ -27,9 +27,7 @@ class FrontFragment : Fragment() {
     private lateinit var adapter: FrontAdapter
     private val args: FrontFragmentArgs by navArgs()
     private lateinit var mViewModel: FrontViewModel
-    private lateinit var mFactory:FrontViewModelFactory
-
-
+    private lateinit var mFactory: FrontViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,51 +45,26 @@ class FrontFragment : Fragment() {
 
         _binding?.recyclerView?.adapter = adapter
         mViewModel.initialUrl(args.webUrl)
-        Log.i("jalgas9",args.webUrl)
+        Log.i("jalgas9", args.webUrl)
         startFunction()
-
 
         adapter.setItemClick {
             var a = it.link
-//            var b = it.author
-//            var s = it.categories
-//            var d = it.content
-//            var e = it.description
-//            var f = it.guid
-//            var j = it.image
-//            var i = it.link
-//            var g = it.pubDate
-//            var h = it.sourceName
-//            var u = it.sourceUrl
-//            var o = it.title
-//            var p = it.video
-
-
-           var action = FrontFragmentDirections.actionFrontFragmentToBackFragment(a)
+            var action = FrontFragmentDirections.actionFrontFragmentToBackFragment(a)
             Navigation.findNavController(view).navigate(action)
-           // Navigation.findNavController(view).navigate(R.id.action_frontFragment_to_backFragment)
-            Toast.makeText(requireContext(), "1", Toast.LENGTH_LONG).show()
         }
-
-
     }
-
     private fun init() {
         var repository = Repository()
         mFactory = FrontViewModelFactory(repository)
-        mViewModel = ViewModelProvider(this,mFactory).get(FrontViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(FrontViewModel::class.java)
     }
 
     private fun startFunction() {
-//        val adapter = FrontAdapter()
         _binding?.recyclerView?.adapter = adapter
         mViewModel.liveData.observe(viewLifecycleOwner, Observer {
-
-         adapter.model = it
+            adapter.model = it
             Log.i("jalgas8", it.toString())
         })
-
-
     }
-
 }

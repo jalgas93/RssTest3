@@ -27,7 +27,6 @@ class AddChannelFragment : Fragment() {
     private val mBinding get() = _binding!!
     private lateinit var mAdapter: AddChannelAdapter
     private val args: AddChannelFragmentArgs by navArgs()
-
     private lateinit var mViewModel: FrontViewModel
     private lateinit var mFactory: AddChannelFactory
 
@@ -76,7 +75,6 @@ class AddChannelFragment : Fragment() {
                 .create()
             dialog.show()
         }
-
           mAdapter.setItemAddChannel {
             var a = it.link
             Log.i("jalgas6",a.toString())
@@ -84,16 +82,12 @@ class AddChannelFragment : Fragment() {
             Navigation.findNavController(view).navigate(action)
         }
     }
-
-
-
     private fun init() {
         var repository = Repository()
         mFactory = AddChannelFactory(repository)
         mViewModel = ViewModelProvider(this, mFactory).get(FrontViewModel::class.java)
         mViewModel.getUrl()
     }
-
     private fun initialiation() {
         mViewModel.rssChannelGetUrl.observe(viewLifecycleOwner, Observer {
             mAdapter.model = it

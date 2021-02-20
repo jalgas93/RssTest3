@@ -15,6 +15,4 @@ interface RoomDao {
     @Delete
     suspend fun delete(channel:Channel)
 
-
-
 }

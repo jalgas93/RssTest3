@@ -19,7 +19,6 @@ class BackFragment : Fragment() {
     private val mBinding get() = _binding!!
     private val args: BackFragmentArgs by navArgs()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,18 +27,12 @@ class BackFragment : Fragment() {
         _binding = FragmentBackBinding.inflate(layoutInflater, container, false)
         return mBinding?.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         mBinding.webView.apply {
             webViewClient = WebViewClient()
             Log.i("jalgas4",args.url.toString())
             args.url?.let { loadUrl(it) }
         }
-
-
     }
-
-
     }

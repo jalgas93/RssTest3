@@ -15,9 +15,6 @@ import com.prof.rssparser.Image
 
 class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
 
-
-
-
     var model: MutableList<Article> = mutableListOf()
         set(value) {
             field = value
@@ -25,33 +22,26 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
             Log.i("model", model.toString())
         }
 
-
     private lateinit var itemClick: (Article) -> Unit
-    fun setItemClick(itemClick: (article:Article) -> Unit) {
+    fun setItemClick(itemClick: (article: Article) -> Unit) {
         this.itemClick = itemClick
     }
+
     inner class FrontViewHolder(val binding: ItemFrontFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         var title = binding.tvTitleItemFront
-
         var descriptions = binding.tvDescriptionItemFront
 
         fun bind(model: Article) {
             Log.i("jalgas1", binding.tvTitleItemFront.toString())
             title.text = model.title
+            Log.i("image", model.image.toString())
 
-
-
-            Glide.with(itemView.context).load("https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300").into(binding.ivItemFront)
-           itemView.setOnClickListener {
-               itemClick.invoke(model)
-           }
-
-
-
-
-
+            Glide.with(itemView.context).load(model.image).into(binding.ivItemFront)
+            itemView.setOnClickListener {
+                itemClick.invoke(model)
+            }
         }
     }
 
@@ -60,14 +50,8 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
             ItemFrontFragmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FrontViewHolder(binding)
     }
-
     override fun onBindViewHolder(holder: FrontViewHolder, position: Int) {
         holder.bind(model[position])
-
-
-
     }
-
     override fun getItemCount(): Int = model.size
-
 }

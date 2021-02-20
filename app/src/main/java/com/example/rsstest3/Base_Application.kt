@@ -13,14 +13,12 @@ class Base_Application : Application() {
         database = Room.databaseBuilder(this, AppRoomDatabase::class.java, "RssDatabase")
             .build()
     }
-
     companion object {
         private var instance: Base_Application? = null
         private var database: AppRoomDatabase? = null
         fun getInstance(): Base_Application {
             return instance!!
         }
-
         fun getDatabase(): AppRoomDatabase {
             return database!!
         }

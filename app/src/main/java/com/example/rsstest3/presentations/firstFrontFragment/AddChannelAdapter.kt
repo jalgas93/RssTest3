@@ -39,28 +39,21 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
             Log.i("jalgas5",channel.link.toString())
             description.text = channel.description
 
-
-           // Glide.with(itemView.context).load(channel.image).into(binding.ivAddChannel)
-
             itemView.setOnClickListener {
                 itemClickAddChannel.invoke(channel)
             }
             binding.btnAddChannel.setOnClickListener {
                 itemDelete.invoke(channel)
             }
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddChannelViewHolder {
-        var binding =
-            ItemAddChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var binding = ItemAddChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AddChannelViewHolder(binding)
     }
-
     override fun onBindViewHolder(holder: AddChannelViewHolder, position: Int) {
         holder.bind(model[position])
     }
-
     override fun getItemCount(): Int = model.size
 }

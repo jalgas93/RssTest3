@@ -25,8 +25,7 @@ class AddRssFragment : Fragment() {
     private val mBinding get() = binding!!
     private val args: AddRssFragmentArgs by navArgs()
     private lateinit var mViewModel: FrontViewModel
-    private lateinit var frontViewModelFactory:AddRssFactory
-
+    private lateinit var frontViewModelFactory: AddRssFactory
 
 
     override fun onCreateView(
@@ -41,7 +40,6 @@ class AddRssFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-          // mViewModel =ViewModelProvider(this).get(FrontViewModel::class.java)
         mBinding.btnAddRss.setOnClickListener {
             initialization()
         }
@@ -51,17 +49,10 @@ class AddRssFragment : Fragment() {
         var text = mBinding.etAddRss.text.toString().trim()
         Log.i("text", text.toString())
         if (text.isNotEmpty()) {
-
             findNavController().navigate(R.id.action_addRssFragment_to_addChannelFragment)
-//
-//
-//            var action = AddRssFragmentDirections.actionAddRssFragmentToAddChannelFragment(text)
-//            findNavController().navigate(action)
-
             mViewModel.insertUrl(
                 Channel(link = text)
             )
-
         } else {
             Toast.makeText(requireContext(), "Добавьте Rss адрес", Toast.LENGTH_SHORT)
                 .show()
@@ -71,8 +62,7 @@ class AddRssFragment : Fragment() {
     private fun init() {
         val repository = Repository()
         frontViewModelFactory = AddRssFactory(repository = repository)
-        mViewModel = ViewModelProvider(this,frontViewModelFactory).get(FrontViewModel::class.java)
-      //  detailViewModel.getDetailRestaurant(1)
+        mViewModel = ViewModelProvider(this, frontViewModelFactory).get(FrontViewModel::class.java)
     }
 
 }
