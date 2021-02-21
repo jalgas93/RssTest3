@@ -2,7 +2,6 @@ package com.example.rsstest3.AllViewModel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.rsstest3.model.Channel
 import com.example.rsstest3.model.UrlAddress
 import com.example.rsstest3.repository.Repository
 
@@ -14,23 +13,23 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.nio.charset.Charset
 
 
 class AllViewModel(
-
-var  repository: Repository
+    var repository: Repository
 ) : ViewModel() {
+    private val articleMutableLiveData: MutableLiveData<MutableList<Article>> = MutableLiveData()
+    val articleLiveData: LiveData<MutableList<Article>> = articleMutableLiveData
 
-    private val rssLiveData: MutableLiveData<List<com.prof.rssparser.Channel>> = MutableLiveData()
-    val liveData: LiveData<List<com.prof.rssparser.Channel>> = rssLiveData
+    private val getUrlAddressMutLive = MutableLiveData<UrlAddress>()
+    val getUrlAddressLiveData: LiveData<UrlAddress>
+        get() = getUrlAddressMutLive
 
-    private val _rssChannelGetUrl = MutableLiveData<UrlAddress>()
-    val rssChannelGetUrl: LiveData<UrlAddress>
-        get() = _rssChannelGetUrl
+    private val channelMutableLiveData = MutableLiveData<List<com.prof.rssparser.Channel>>()
+    val channelLiveData: LiveData<List<com.prof.rssparser.Channel>> = channelMutableLiveData
 
 
-//    fun insertUrl(channel:com.example.rsstest3.model.Channel){
+    //    fun insertUrl(channel:com.example.rsstest3.model.Channel){
 //        viewModelScope.launch {
 //            repository.insertUrl(channel)
 //        }
@@ -46,31 +45,31 @@ var  repository: Repository
 //
 //        }
 //    }
-    fun insertUrlAddress(urlAddress: UrlAddress){
+    fun insertUrlAddress(urlAddress: UrlAddress) {
         viewModelScope.launch {
             repository.insertUrlAddress(urlAddress)
         }
     }
 
-    fun getUrlAddress(){
+    fun getUrlAddress() {
         viewModelScope.launch {
-            _rssChannelGetUrl.value = repository.getUrlAddress()
+            getUrlAddressMutLive.value = repository.getUrlAddress()
 
         }
     }
 
-    fun deleteItem(channel:Channel){
-        viewModelScope.launch {
-            repository.deleteItem(channel)
-        }
-    }
+//    fun deleteItem(channel: Channel) {
+//        viewModelScope.launch {
+//            repository.deleteItem(channel)
+//        }
+//    }
 //    val parser = Parser.Builder()
 //        //.context(re)
 //        .charset(Charset.forName("ISO-8859-7"))
 //        .cacheExpirationMillis(24L * 60L * 60L * 100L) // one day
 //        .build()
 
-//    fun initialUrl(url:String) {
+    //    fun initialUrl(url:String) {
 //      viewModelScope.launch {
 //          try {
 //              val channel = parser.getChannel(url)
@@ -86,25 +85,45 @@ var  repository: Repository
 //      }
 //
 //  }
-       val okHttpClient by lazy {
-          OkHttpClient()
-      }
-      fun fetchForUrlAndParseRawData(url: String) {
-          val parser = Parser.Builder().build()
+    val okHttpClient by lazy {
+        OkHttpClient()
+    }
 
-          viewModelScope.launch(Dispatchers.IO) {
-              val request = Request.Builder()
-                  .url(url)
-                  .build()
-              val result = okHttpClient.newCall(request).execute()
-              val raw = runCatching { result.body?.string() }.getOrNull()
-              if (raw == null) {
-                rssLiveData.value = raw
-              } else {
-                  val channel = parser.parse(raw)
-                  rssLiveData.value = listOf(channel)
-                  Log.i("jalgas11",channel.toString())
-              }
-          }
-  }
+
+    fun ArticleFunction(url: String) {
+        val parser = Parser.Builder().build()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val request = Request.Builder()
+                .url(url)
+                .build()
+            val result = okHttpClient.newCall(request).execute()
+            val raw = runCatching { result.body?.string() }.getOrNull()
+            if (raw == null) {
+                articleMutableLiveData.value = raw
+            } else {
+                val channel = parser.parse(raw)
+                articleMutableLiveData.value = channel.articles
+                Log.i("jalgas11", channel.toString())
+            }
+        }
+    }
+    fun ChannelFunction(url: String) {
+        val parser = Parser.Builder().build()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val request = Request.Builder()
+                .url(url)
+                .build()
+            val result = okHttpClient.newCall(request).execute()
+            val raw = runCatching { result.body?.string() }.getOrNull()
+            if (raw == null) {
+                channelMutableLiveData.value = raw
+            } else {
+                val channel = parser.parse(raw)
+                channelMutableLiveData.value = listOf(channel)
+                Log.i("jalgas11", channel.toString())
+            }
+        }
+    }
 }

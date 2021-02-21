@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.rsstest3.R
 import com.example.rsstest3.AllViewModel.AllViewModel
 import com.example.rsstest3.databinding.FragmentAddChannelBinding
-import com.example.rsstest3.model.Channel
 import com.example.rsstest3.repository.Repository
 
 
@@ -43,18 +42,21 @@ class AddChannelFragment : Fragment() {
         init()
         initialiation()
         Log.i("jalgas7", args.url.toString())
-
+        mViewModel.getUrlAddress()
         mAdapter = AddChannelAdapter()
         mBinding.recyclerViewAddChannel.adapter = mAdapter
         mBinding.flBtnAddChannel.setOnClickListener {
             findNavController().navigate(R.id.action_addChannelFragment_to_addRssFragment)
         }
+        mViewModel.getUrlAddress()
+        getUrl()
+
 
         mAdapter.setDeleteItem {
             var a = it.link
             var b = it.articles
             var s = it.description
-            var d = it.id
+           // var d = it.id
             var e = it.image
             var j = it.lastBuildDate
             var q = it.title
@@ -64,10 +66,10 @@ class AddChannelFragment : Fragment() {
                 .setMessage("Вы уверены что хотите удалить ? ")
                 .setTitle("Удалить")
                 .setPositiveButton("yes") { _, _ ->
-                    mViewModel.deleteItem(
-                        Channel(d, q, a,s,e,j,w,b)
-                    )
-                    mViewModel.getUrl()
+//                    mViewModel.deleteItem(
+//                        Channel(d, q, a,s,e,j,w,b)
+//                    )
+                   // mViewModel.getUrl()
                 }
                 .setNegativeButton("no", null)
                 .create()
@@ -80,14 +82,22 @@ class AddChannelFragment : Fragment() {
             Navigation.findNavController(view).navigate(action)
         }
     }
+
+    private fun getUrl() {
+        mViewModel.getUrlAddressLiveData.observe(viewLifecycleOwner, Observer {
+//          mViewModel.ChannelFunction(it.urlAddres)
+         //   Log.i("jalgas11",it.toString())
+        })
+    }
+
     private fun init() {
         var repository = Repository()
         mFactory = AddChannelFactory(repository)
         mViewModel = ViewModelProvider(this, mFactory).get(AllViewModel::class.java)
-        mViewModel.getUrl()
+
     }
     private fun initialiation() {
-        mViewModel.rssChannelGetUrl.observe(viewLifecycleOwner, Observer {
+        mViewModel.channelLiveData.observe(viewLifecycleOwner, Observer {
             mAdapter.model = it
         })
     }

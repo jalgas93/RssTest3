@@ -1,10 +1,9 @@
 package com.example.rsstest3.cache
 
 import androidx.room.*
-import com.example.rsstest3.model.Channel
-import com.example.rsstest3.model.Image
+import com.example.rsstest3.model.UrlAddress
 
-@Database(entities = [Channel::class], version = 2)
+@Database(entities = [UrlAddress::class], version =1)
 abstract class AppRoomDatabase : RoomDatabase() {
     abstract fun getRoomDao(): RoomDao
 }

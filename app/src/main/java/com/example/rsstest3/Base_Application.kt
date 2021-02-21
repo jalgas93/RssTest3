@@ -10,7 +10,7 @@ class Base_Application : Application() {
         super.onCreate()
         instance = this
 
-        database = Room.databaseBuilder(this, AppRoomDatabase::class.java, "RssDatabase")
+        database = Room.databaseBuilder(this, AppRoomDatabase::class.java, "RssDB")
             .build()
     }
     companion object {

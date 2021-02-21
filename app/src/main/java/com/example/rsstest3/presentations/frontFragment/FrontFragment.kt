@@ -39,11 +39,10 @@ class FrontFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
         adapter = FrontAdapter()
+        startFunction()
         _binding?.recyclerView?.adapter = adapter
         Log.i("jalgas9", args.webUrl)
-        startFunction()
-        getUrl()
-        mViewModel.getUrlAddress()
+        mViewModel.ArticleFunction("")
 
 
 
@@ -61,12 +60,6 @@ class FrontFragment : Fragment() {
         //  tv_toolbar.text =
     }
 
-    private fun getUrl() {
-        mViewModel.rssChannelGetUrl.observe(viewLifecycleOwner, Observer {
-            mViewModel.fetchForUrlAndParseRawData(it.urlAddres)
-        })
-    }
-
     private fun init() {
         var repository = Repository()
         mFactory = FrontViewModelFactory(repository)
@@ -75,7 +68,7 @@ class FrontFragment : Fragment() {
 
     private fun startFunction() {
         _binding?.recyclerView?.adapter = adapter
-        mViewModel.liveData.observe(viewLifecycleOwner, Observer {
+        mViewModel.articleLiveData.observe(viewLifecycleOwner, Observer {
             adapter.model = it
             Log.i("jalgas8", it.toString())
 

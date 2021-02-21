@@ -4,28 +4,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.rsstest3.databinding.FragmentAddChannelBinding
 import com.example.rsstest3.databinding.ItemAddChannelBinding
-import com.example.rsstest3.model.Channel
 
 class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelViewHolder>() {
 
 
 
-    var model: List<Channel> = listOf()
+    var model: List<com.prof.rssparser.Channel> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    private lateinit var itemDelete:(Channel)->Unit
-    fun setDeleteItem(itemDelete:(channel:Channel)->Unit){
+    private lateinit var itemDelete:(com.prof.rssparser.Channel)->Unit
+    fun setDeleteItem(itemDelete:(channel:com.prof.rssparser.Channel)->Unit){
         this.itemDelete = itemDelete
     }
 
-    private lateinit var itemClickAddChannel: (Channel) -> Unit
-    fun setItemAddChannel(itemClickAddChannel: (channel: Channel) -> Unit) {
+    private lateinit var itemClickAddChannel: (com.prof.rssparser.Channel) -> Unit
+    fun setItemAddChannel(itemClickAddChannel: (channel: com.prof.rssparser.Channel) -> Unit) {
         this.itemClickAddChannel = itemClickAddChannel
     }
 
@@ -34,7 +31,7 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
         var title = binding.tvAddChannel
         var description = binding.tvDescriptionAddChannel
 
-        fun bind(channel: Channel) {
+        fun bind(channel: com.prof.rssparser.Channel) {
             title.text = channel.link
             Log.i("jalgas5",channel.link.toString())
             description.text = channel.description

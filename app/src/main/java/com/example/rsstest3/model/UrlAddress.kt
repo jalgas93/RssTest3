@@ -3,7 +3,7 @@ package com.example.rsstest3.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-@Entity(tableName = "entitiyUrlAddress")
+@Entity(tableName = "UrlAddress")
 data class UrlAddress(
 
     @PrimaryKey(autoGenerate = false)
@@ -11,7 +11,7 @@ data class UrlAddress(
     val id: Int? = null,
 
     // Value from API
-    @ColumnInfo(name = "urlAddress")
+    @ColumnInfo(name = "urlAddres")
     var urlAddres: String
 
     )

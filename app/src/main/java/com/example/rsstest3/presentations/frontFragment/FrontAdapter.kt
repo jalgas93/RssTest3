@@ -57,9 +57,6 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
                 e.printStackTrace()
             }
             data.text = dataFinish
-
-
-
             Log.i("image", model.title.toString())
             Log.i("image", model.description.toString())
             Log.i("image", model.author.toString())
@@ -74,8 +71,6 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
             Log.i("image", model.link.toString())
             Log.i("image", model.categories.toString())
 
-
-
             Glide.with(itemView.context).load(model.image).into(binding.ivItemFront)
             itemView.setOnClickListener {
                 itemClick.invoke(model)
@@ -84,8 +79,7 @@ class FrontAdapter : RecyclerView.Adapter<FrontAdapter.FrontViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FrontViewHolder {
-        var binding =
-            ItemFrontFragmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var binding = ItemFrontFragmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FrontViewHolder(binding)
     }
 

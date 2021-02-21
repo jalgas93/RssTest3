@@ -13,7 +13,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.rsstest3.R
 import com.example.rsstest3.AllViewModel.AllViewModel
 import com.example.rsstest3.databinding.FragmentAddRssBinding
-import com.example.rsstest3.model.Channel
 import com.example.rsstest3.model.UrlAddress
 import com.example.rsstest3.repository.Repository
 
