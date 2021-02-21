@@ -13,11 +13,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.rsstest3.R
-import com.example.rsstest3.RssViewModel.FrontViewModel
+import com.example.rsstest3.AllViewModel.AllViewModel
 import com.example.rsstest3.databinding.FragmentAddChannelBinding
-import com.example.rsstest3.databinding.ItemAddChannelBinding
 import com.example.rsstest3.model.Channel
-import com.example.rsstest3.presentations.floatingActionbutton.AddRssFactory
 import com.example.rsstest3.repository.Repository
 
 
@@ -27,7 +25,7 @@ class AddChannelFragment : Fragment() {
     private val mBinding get() = _binding!!
     private lateinit var mAdapter: AddChannelAdapter
     private val args: AddChannelFragmentArgs by navArgs()
-    private lateinit var mViewModel: FrontViewModel
+    private lateinit var mViewModel: AllViewModel
     private lateinit var mFactory: AddChannelFactory
 
 
@@ -85,7 +83,7 @@ class AddChannelFragment : Fragment() {
     private fun init() {
         var repository = Repository()
         mFactory = AddChannelFactory(repository)
-        mViewModel = ViewModelProvider(this, mFactory).get(FrontViewModel::class.java)
+        mViewModel = ViewModelProvider(this, mFactory).get(AllViewModel::class.java)
         mViewModel.getUrl()
     }
     private fun initialiation() {

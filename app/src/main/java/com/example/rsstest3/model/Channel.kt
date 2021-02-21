@@ -1,7 +1,7 @@
 package com.example.rsstest3.model
 
 import androidx.room.*
-import com.google.gson.annotations.SerializedName
+
 import java.io.Serializable
 
 @Entity(tableName = "entitiyNameDB")

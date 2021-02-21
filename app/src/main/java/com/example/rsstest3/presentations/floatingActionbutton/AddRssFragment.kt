@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.rsstest3.R
-import com.example.rsstest3.RssViewModel.FrontViewModel
+import com.example.rsstest3.AllViewModel.AllViewModel
 import com.example.rsstest3.databinding.FragmentAddRssBinding
 import com.example.rsstest3.model.Channel
 import com.example.rsstest3.repository.Repository
@@ -24,7 +22,7 @@ class AddRssFragment : Fragment() {
     private var binding: FragmentAddRssBinding? = null
     private val mBinding get() = binding!!
     private val args: AddRssFragmentArgs by navArgs()
-    private lateinit var mViewModel: FrontViewModel
+    private lateinit var mViewModel: AllViewModel
     private lateinit var frontViewModelFactory: AddRssFactory
 
 
@@ -62,7 +60,7 @@ class AddRssFragment : Fragment() {
     private fun init() {
         val repository = Repository()
         frontViewModelFactory = AddRssFactory(repository = repository)
-        mViewModel = ViewModelProvider(this, frontViewModelFactory).get(FrontViewModel::class.java)
+        mViewModel = ViewModelProvider(this, frontViewModelFactory).get(AllViewModel::class.java)
     }
 
 }

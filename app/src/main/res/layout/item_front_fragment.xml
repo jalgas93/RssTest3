@@ -11,16 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_itemFront"
             android:layout_width="match_parent"
             android:layout_height="194dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
+
+
             />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitle_itemFront"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,16 +32,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:padding="8dp"
             android:layout_marginTop="8dp"
+            android:text="Title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/CardView.Light"
                         />
 
-        <TextView
-            android:id="@+id/tvDescription_itemFront"
-            android:layout_width="match_parent"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAuthor_itemFront"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvData_itemFront"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle_itemFront"
             android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:padding="8dp"
+            android:text="Author"
+            android:textStyle="italic"
+            style="@style/CardView.Dark"
+
+            />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvData_itemFront"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvAuthor_itemFront"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle_itemFront"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:padding="8dp"
+            android:text="Data"
+            android:textStyle="italic"
+            android:textAlignment="textEnd"
+            style="@style/TextAppearance.AppCompat.Body2"
             />
 
 

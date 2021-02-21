@@ -1,13 +1,10 @@
-package com.example.rsstest3.RssViewModel
+package com.example.rsstest3.AllViewModel
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.rsstest3.model.Channel
 import com.example.rsstest3.repository.Repository
 
-import com.example.rsstest3.util.BASE_URL
 import com.prof.rssparser.Article
 
 import com.prof.rssparser.Parser
@@ -16,7 +13,7 @@ import kotlinx.coroutines.launch
 import java.nio.charset.Charset
 
 
-class FrontViewModel(
+class AllViewModel(
 
 var  repository: Repository
 ) : ViewModel() {
