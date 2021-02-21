@@ -14,6 +14,7 @@ import com.example.rsstest3.R
 import com.example.rsstest3.AllViewModel.AllViewModel
 import com.example.rsstest3.databinding.FragmentAddRssBinding
 import com.example.rsstest3.model.Channel
+import com.example.rsstest3.model.UrlAddress
 import com.example.rsstest3.repository.Repository
 
 
@@ -48,8 +49,8 @@ class AddRssFragment : Fragment() {
         Log.i("text", text.toString())
         if (text.isNotEmpty()) {
             findNavController().navigate(R.id.action_addRssFragment_to_addChannelFragment)
-            mViewModel.insertUrl(
-                Channel(link = text)
+            mViewModel.insertUrlAddress(
+                UrlAddress(urlAddres = text)
             )
         } else {
             Toast.makeText(requireContext(), "Добавьте Rss адрес", Toast.LENGTH_SHORT)

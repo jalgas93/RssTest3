@@ -37,15 +37,13 @@ class FrontFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         init()
         adapter = FrontAdapter()
         _binding?.recyclerView?.adapter = adapter
-        mViewModel.initialUrl(args.webUrl)
         Log.i("jalgas9", args.webUrl)
         startFunction()
+        getUrl()
+        mViewModel.getUrlAddress()
 
 
 
@@ -59,8 +57,14 @@ class FrontFragment : Fragment() {
             requireActivity().onBackPressed()
         }
 
-               var tv_toolbar = mBinding.tvToolbar
-      //  tv_toolbar.text =
+        var tv_toolbar = mBinding.tvToolbar
+        //  tv_toolbar.text =
+    }
+
+    private fun getUrl() {
+        mViewModel.rssChannelGetUrl.observe(viewLifecycleOwner, Observer {
+            mViewModel.fetchForUrlAndParseRawData(it.urlAddres)
+        })
     }
 
     private fun init() {
