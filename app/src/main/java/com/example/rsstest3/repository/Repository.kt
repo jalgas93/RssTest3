@@ -19,6 +19,6 @@ class Repository() {
     suspend fun insertUrlAddress( urlAddress: UrlAddress) =
         Base_Application.getDatabase().getRoomDao().insertUrlAddress(urlAddress)
 
-    suspend fun getUrlAddress() = Base_Application.getDatabase().getRoomDao().getUrlAddress()
+     fun getUrlAddress() = Base_Application.getDatabase().getRoomDao().getUrlAddress()
 
 }

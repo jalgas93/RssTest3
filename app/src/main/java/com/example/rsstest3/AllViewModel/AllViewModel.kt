@@ -51,12 +51,10 @@ class AllViewModel(
         }
     }
 
-    fun getUrlAddress() {
-        viewModelScope.launch {
-            getUrlAddressMutLive.value = repository.getUrlAddress()
+    fun getUrlAddress() = repository.getUrlAddress()
 
-        }
-    }
+
+
 
 //    fun deleteItem(channel: Channel) {
 //        viewModelScope.launch {

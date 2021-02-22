@@ -1,5 +1,6 @@
 package com.example.rsstest3.cache
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.rsstest3.model.UrlAddress
 
@@ -20,6 +21,6 @@ interface RoomDao {
     suspend fun insertUrlAddress(urlAddress: UrlAddress)
 
     @Query("SELECT * FROM UrlAddress")
-    suspend fun getUrlAddress():UrlAddress
+    fun getUrlAddress():LiveData<UrlAddress>
 
 }

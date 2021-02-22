@@ -41,16 +41,15 @@ class AddChannelFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        getUrl()
         initialiation()
         Log.i("jalgas7", args.url.toString())
-        mViewModel.getUrlAddress()
         mAdapter = AddChannelAdapter()
         mBinding.recyclerViewAddChannel.adapter = mAdapter
         mBinding.flBtnAddChannel.setOnClickListener {
             findNavController().navigate(R.id.action_addChannelFragment_to_addRssFragment)
         }
-        mViewModel.getUrlAddress()
-        getUrl()
+      //  mViewModel.getUrlAddress()
 
 
         mAdapter.setDeleteItem {
@@ -95,9 +94,9 @@ class AddChannelFragment : Fragment() {
     }
 
     private fun getUrl() {
-        mViewModel.getUrlAddressLiveData.observe(viewLifecycleOwner, Observer {
-            mViewModel.ChannelFunction("https://lenta.ru/rss/last24")
-            //   Log.i("jalgas11",it.toString())
+        mViewModel.getUrlAddress().observe(viewLifecycleOwner, Observer {
+            mViewModel.ChannelFunction(it.urlAddres)
+//            Log.i("jalgas11",it.toString())
         })
     }
 
