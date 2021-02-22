@@ -41,8 +41,10 @@ class FrontFragment : Fragment() {
         adapter = FrontAdapter()
         startFunction()
         _binding?.recyclerView?.adapter = adapter
-        Log.i("jalgas9", args.webUrl)
-        mViewModel.ArticleFunction("")
+       // Log.i("jalgas9", args.webUrl)
+        mViewModel.ArticleFunction("https://lenta.ru/rss/last24")
+
+
 
 
 
@@ -57,7 +59,8 @@ class FrontFragment : Fragment() {
         }
 
         var tv_toolbar = mBinding.tvToolbar
-        //  tv_toolbar.text =
+         tv_toolbar.text = args.webUrl.title
+
     }
 
     private fun init() {

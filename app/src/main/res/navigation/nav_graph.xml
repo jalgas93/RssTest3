@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_front" >
         <argument
             android:name="webUrl"
-            app:argType="string" />
+            app:argType="com.prof.rssparser.Channel" />
         <action
             android:id="@+id/action_frontFragment_to_backFragment"
             app:destination="@id/backFragment" />

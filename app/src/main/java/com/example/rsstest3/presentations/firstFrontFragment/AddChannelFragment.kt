@@ -16,6 +16,7 @@ import com.example.rsstest3.R
 import com.example.rsstest3.AllViewModel.AllViewModel
 import com.example.rsstest3.databinding.FragmentAddChannelBinding
 import com.example.rsstest3.repository.Repository
+import com.prof.rssparser.Channel
 
 
 class AddChannelFragment : Fragment() {
@@ -56,7 +57,7 @@ class AddChannelFragment : Fragment() {
             var a = it.link
             var b = it.articles
             var s = it.description
-           // var d = it.id
+            // var d = it.id
             var e = it.image
             var j = it.lastBuildDate
             var q = it.title
@@ -69,24 +70,34 @@ class AddChannelFragment : Fragment() {
 //                    mViewModel.deleteItem(
 //                        Channel(d, q, a,s,e,j,w,b)
 //                    )
-                   // mViewModel.getUrl()
+                    // mViewModel.getUrl()
                 }
                 .setNegativeButton("no", null)
                 .create()
             dialog.show()
         }
-          mAdapter.setItemAddChannel {
+        mAdapter.setItemAddChannel {
             var a = it.link
-            Log.i("jalgas6",a.toString())
-            var action = AddChannelFragmentDirections.actionAddChannelFragmentToFrontFragment(a!!)
+            var q = it.title
+            var w = it.updatePeriod
+            var e = it.lastBuildDate
+            var r = it.image
+            var t = it.description
+            var y = it.articles
+            Log.i("jalgas6", a.toString())
+            var action = AddChannelFragmentDirections.actionAddChannelFragmentToFrontFragment(
+                Channel(
+                q,a,t,r,e,w,y
+            )
+            )
             Navigation.findNavController(view).navigate(action)
         }
     }
 
     private fun getUrl() {
         mViewModel.getUrlAddressLiveData.observe(viewLifecycleOwner, Observer {
-//          mViewModel.ChannelFunction(it.urlAddres)
-         //   Log.i("jalgas11",it.toString())
+            mViewModel.ChannelFunction("https://lenta.ru/rss/last24")
+            //   Log.i("jalgas11",it.toString())
         })
     }
 
@@ -96,6 +107,7 @@ class AddChannelFragment : Fragment() {
         mViewModel = ViewModelProvider(this, mFactory).get(AllViewModel::class.java)
 
     }
+
     private fun initialiation() {
         mViewModel.channelLiveData.observe(viewLifecycleOwner, Observer {
             mAdapter.model = it

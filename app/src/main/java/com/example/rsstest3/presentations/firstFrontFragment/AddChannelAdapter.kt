@@ -4,7 +4,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rsstest3.databinding.ItemAddChannelBinding
+import com.bumptech.glide.Glide
+import com.example.rsstest3.databinding.ItemChannelBinding
+import com.squareup.picasso.Picasso
+
 
 class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelViewHolder>() {
 
@@ -26,27 +29,29 @@ class AddChannelAdapter() : RecyclerView.Adapter<AddChannelAdapter.AddChannelVie
         this.itemClickAddChannel = itemClickAddChannel
     }
 
-    inner class AddChannelViewHolder(val binding: ItemAddChannelBinding) :
+    inner class AddChannelViewHolder(val binding: ItemChannelBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var title = binding.tvAddChannel
-        var description = binding.tvDescriptionAddChannel
+
+        var title = binding.tvDescChannel
+
+
 
         fun bind(channel: com.prof.rssparser.Channel) {
-            title.text = channel.link
-            Log.i("jalgas5",channel.link.toString())
-            description.text = channel.description
+         title.text = channel.description
 
+//            Glide.with(itemView.context).load(channel.image).into(binding.image)
+            Picasso.get().load(channel.image!!.url).into(binding.ivItemChannel)
             itemView.setOnClickListener {
                 itemClickAddChannel.invoke(channel)
             }
-            binding.btnAddChannel.setOnClickListener {
-                itemDelete.invoke(channel)
-            }
+//            binding.btnAddChannel.setOnClickListener {
+//                itemDelete.invoke(channel)
+//            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddChannelViewHolder {
-        var binding = ItemAddChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        var binding = ItemChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AddChannelViewHolder(binding)
     }
     override fun onBindViewHolder(holder: AddChannelViewHolder, position: Int) {

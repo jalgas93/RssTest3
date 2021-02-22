@@ -100,10 +100,10 @@ class AllViewModel(
             val result = okHttpClient.newCall(request).execute()
             val raw = runCatching { result.body?.string() }.getOrNull()
             if (raw == null) {
-                articleMutableLiveData.value = raw
+                articleMutableLiveData.postValue(raw)
             } else {
                 val channel = parser.parse(raw)
-                articleMutableLiveData.value = channel.articles
+                articleMutableLiveData.postValue(channel.articles)
                 Log.i("jalgas11", channel.toString())
             }
         }
@@ -118,10 +118,10 @@ class AllViewModel(
             val result = okHttpClient.newCall(request).execute()
             val raw = runCatching { result.body?.string() }.getOrNull()
             if (raw == null) {
-                channelMutableLiveData.value = raw
+                channelMutableLiveData.postValue(raw)
             } else {
                 val channel = parser.parse(raw)
-                channelMutableLiveData.value = listOf(channel)
+                channelMutableLiveData.postValue(listOf(channel))
                 Log.i("jalgas11", channel.toString())
             }
         }
